@@ -1,6 +1,6 @@
 # CLI AI Chat
 
-A command-line interface application that allows you to have interactive conversations with an AI powered by GPT-4.
+A command-line interface application that allows you to have interactive conversations with an AI powered by GPT-4o-mini using Vercel's AI SDK.
 
 ## Features
 
@@ -11,7 +11,7 @@ A command-line interface application that allows you to have interactive convers
 
 ## Prerequisites
 
-- Node.js (v16 or higher)
+- Node.js (version 20 or higher)
 - pnpm (https://pnpm.io/)
 - bun (https://bun.sh/docs/installation)
 
@@ -19,18 +19,18 @@ A command-line interface application that allows you to have interactive convers
 
 1. Clone the repository
 2. Install dependencies:
-```bash
+```sh
 pnpm install
 ```
 
 ## Usage
 
-```bash
+```sh
 cp env.example .env
 ```
 
 Important: Edit the `.env` file with your OpenAI API key.
 
-```bash
-pnpm run start
+```sh
+pnpm run dev
 ```
