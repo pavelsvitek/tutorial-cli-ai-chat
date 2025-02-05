@@ -1,0 +1,22 @@
+{
+  "name": "cli-ai-chat",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "bun --watch index.ts chat",
+    "start": "bun index.ts",
+    "start:chat": "bun index.ts chat",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@ai-sdk/openai": "^1.1.9",
+    "@modelfusion/vercel-ai": "^1.1.0",
+    "ai": "^4.1.18",
+    "commander": "^13.1.0",
+    "inquirer": "^12.4.1"
+  }
+}
