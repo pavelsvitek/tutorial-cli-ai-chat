@@ -1,48 +1,17 @@
 import { openai } from "@ai-sdk/openai";
-import { CoreMessage, generateText } from "ai";
-import { Command } from "commander";
-import inquirer from "inquirer";
+import { generateText } from "ai";
 
-const program = new Command();
+const model = openai("gpt-4o-mini");
 
-async function answerQuestion(messages: CoreMessage[]) {
+export async function generateAnswer(prompt: string) {
   const { text } = await generateText({
-    model: openai("gpt-4o-mini"),
-    system: "You are a helpful assistant.",
-    messages,
+    model,
+    prompt,
   });
 
   return text;
 }
 
-program.version("1.0.0").description("AI Chat CLI");
+const answer = await generateAnswer("Who is Sam Altman?");
 
-program
-  .command("chat")
-  .description("Start a chat with the AI")
-  .action(async () => {
-    console.log('Welcome to AI Chat! Type "exit" to quit.');
-
-    while (true) {
-      const messages: CoreMessage[] = [];
-      const { userInput } = await inquirer.prompt([
-        {
-          type: "input",
-          name: "userInput",
-          message: "You:",
-        },
-      ]);
-
-      if (userInput.toLowerCase() === "exit") {
-        console.log("Goodbye!");
-        process.exit(0);
-      }
-
-      messages.push({ role: "user", content: userInput });
-      const aiResponse = await answerQuestion(messages);
-      messages.push({ role: "assistant", content: aiResponse });
-      console.log("AI:", aiResponse);
-    }
-  });
-
-program.parse(process.argv);
+console.log(answer);
