@@ -1,5 +1,8 @@
+#!/usr/bin/env node
+
 import { openai } from "@ai-sdk/openai";
 import { generateText } from "ai";
+import { Command } from "commander";
 
 const model = openai("gpt-4o-mini");
 
@@ -13,6 +16,25 @@ export async function generateAnswer(prompt: string) {
   return text;
 }
 
-const answer = await generateAnswer("Who is Sam Altman?");
+const program = new Command();
 
-console.log(answer);
+program
+  .name('ai-chat')
+  .description('CLI tool for chatting with AI using different personas')
+  .version('1.0.0');
+
+program
+  .command('chat')
+  .description('Start a chat with AI')
+  .argument('<prompt>', 'The prompt to send to AI')
+  .action(async (prompt: string) => {
+    try {
+      const response = await generateAnswer(prompt);
+      console.log(response);
+    } catch (error) {
+      console.error('Error:', String(error));
+      process.exit(1);
+    }
+  });
+
+program.parse();
