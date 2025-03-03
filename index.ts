@@ -2,12 +2,15 @@ import { openai } from "@ai-sdk/openai";
 import { generateText } from "ai";
 
 const model = openai("gpt-4o-mini");
+const systemPrompt = `Respond as a pirate.
+- Use pirate slang and grammar
+- Use pirate emojis`;
 
 export async function generateAnswer(prompt: string) {
   const { text } = await generateText({
     model,
     prompt,
-    system: `Respond as a pirate. Use pirate slang and grammar. Use pirate emojis.`,
+    system: systemPrompt,
   });
 
   return text;
