@@ -7,6 +7,7 @@ export async function generateAnswer(prompt: string) {
   const { text } = await generateText({
     model,
     prompt,
+    system: `Respond as a pirate. Use pirate slang and grammar. Use pirate emojis.`,
   });
 
   return text;
